@@ -22,8 +22,8 @@ On Medium security, DVWA adds one line before the query:
 $id = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_GET['id']);
 ```
 
-What this does: it escapes special characters in your input.
-Your single quote ' gets turned into \' before it enters the query.
+What this does: it escapes special characters in input.
+single quote ' gets turned into \' before it enters the query.
 
 So when you type:  1' OR '1'='1
 Medium sees it as: 1\' OR \'1\'=\'1
@@ -31,7 +31,7 @@ Medium sees it as: 1\' OR \'1\'=\'1
 The query becomes:
 SELECT first_name, last_name FROM users WHERE id='1\' OR \'1\'=\'1' LIMIT 1;
 
-This is now broken SQL that returns nothing — your injection is neutralised.
+This is now broken SQL that returns nothing — means injection is neutralised.
 
 The fix works because the quote that was "escaping out" of the string
 is now escaped itself and treated as a literal character, not SQL syntax.
